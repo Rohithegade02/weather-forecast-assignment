@@ -15,7 +15,7 @@ const History = observer(() => {
   const visitedLocations: Location[] = store.visitedLocations || [];
 
   return (
-    <MainLayout>
+    <MainLayout weatherdata={null}>
       <div className='bg-gradient-to-r from-slate-50 via-[#FCE7D6] to-[#EFEEF3] flex mt-10 mx-auto gap-10 justify-center lg:w-[50%]'>
         {visitedLocations.length > 0 ? (
           <table className="bg-slate-50 w-[80%] lg:w-[100%] rounded-md">

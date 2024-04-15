@@ -7,7 +7,7 @@ import City from "./components/City";
 
 const Home: React.FC = () => {
   return (
-    <MainLayout >
+    <MainLayout weatherdata={null} >
       <City/>
     </MainLayout>
   );
