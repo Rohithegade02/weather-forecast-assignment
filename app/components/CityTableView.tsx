@@ -71,14 +71,14 @@ const CityTableView: React.FC<CityTableViewProps> = ({
     >
       <td
         className="hover:underline cursor-pointer text-center mx-[2px] lg:p-[2px] p-[1px] lg:p-[10px]"
-        onContextMenu={handleContextMenu}
+        onContextMenu={()=>handleContextMenu}
         onClick={handleClick}
       >
         {name}
       </td>
-      <td className="text-center px-[1px] lg:px-[50px]">{label_en}</td>
-      <td className="text-center px-[1px] lg:px-[30px]">{population}</td>
-      <td className="text-center px-[1px] lg:px-[30px] font-light">{timezoneString(timezone)}</td>
+      <td className="text-center px-[1px] lg:py-[10px] lg:px-[50px]">{label_en}</td>
+      <td className="text-center px-[1px] lg:py-[10px] lg:px-[30px]">{population}</td>
+      <td className="text-center px-[1px] lg:py-[10px] lg:px-[30px] font-light">{timezoneString(timezone)}</td>
       <td  style={{ display: isMobile ? 'none' : '', width: isMobile ? 0 : 'auto', overflow: isMobile ? 'hidden' : 'visible' }}><Star onClick={handleFav} fill={isFill ?'gold':'white'} strokeWidth={isFill ? 0 : 2}
         stroke="currentColor"
         size={24} /></td> 

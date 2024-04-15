@@ -9,7 +9,9 @@ interface City {
   cou_name_en: string;
   population: number;
   timezone: string;
+  coordinates:any;
   [key: string]: string | number;
+  
 }
 
 const City = () => {
@@ -185,7 +187,15 @@ const City = () => {
               </thead>
               <tbody>
                 {sortedData.map((city, index) => (
-                  <CityTableView key={index} {...city} />
+                  <CityTableView 
+                  key={index} 
+                  name={city.name} 
+                  label_en={city.cou_name_en} 
+                  population={city.population} 
+                  timezone={city.timezone} 
+                  coordinates={city.coordinates} 
+                />
+                
                 ))}
               </tbody>
             </table>
