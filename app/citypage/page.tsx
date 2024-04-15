@@ -1,6 +1,6 @@
 'use client'
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
 import Shimmer from "../components/Shimmer";
 import store from "../store";
@@ -68,7 +68,8 @@ const CityPage: React.FC = observer(() => {
   //kelvin to fahrenheit
   const temperatureToFahrenheit = (temp: number) => Math.round((temp - 273.15) * 1.8)+32;
 
-  return isLoading ? <Shimmer/>:(
+  return isLoading ? <Shimmer /> : (
+    <Suspense>
     <MainLayout weatherdata={weatherdata}>
       <div style={{
        background: weatherdata?.weather && weatherdata.weather.length > 0 && weatherdata.weather[0].main.toLowerCase() === 'clouds'
@@ -149,7 +150,8 @@ const CityPage: React.FC = observer(() => {
           </div>
         }
       </div>
-    </MainLayout>
+      </MainLayout>
+      </Suspense>
   );
 });
 

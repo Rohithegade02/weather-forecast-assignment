@@ -28,7 +28,8 @@ const CityTableView: React.FC<CityTableViewProps> = ({
   const [isFill, setIsFill] = useState<boolean>(false)
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   //right click navigate to the city weather details
-  const handleContextMenu = (event: React.MouseEvent<HTMLTableRowElement>) => {
+  type ContextMenuEventHandler = (event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void;
+  const handleContextMenu :ContextMenuEventHandler= (event) => {
     event.preventDefault();
     const encodedCoordinates = encodeURIComponent(`${coordinates.lat},${coordinates.lon}`);
     const url = `/citypage/?coordinates=${encodedCoordinates}`;
@@ -68,10 +69,10 @@ const CityTableView: React.FC<CityTableViewProps> = ({
   return (
     <tr
       className="text-[#8B859B] hover:bg-[#FCE7D6] active:bg-[#FCE7D6] focus:outline-none focus:ring focus:ring-[FCE7D6]"
+      onContextMenu={handleContextMenu}
     >
       <td
         className="hover:underline cursor-pointer text-center mx-[2px] lg:p-[2px] p-[1px] lg:p-[10px]"
-        onContextMenu={()=>handleContextMenu}
         onClick={handleClick}
       >
         {name}
