@@ -9,6 +9,7 @@ interface City {
   cou_name_en: string;
   population: number;
   timezone: string;
+  [key: string]: string | number;
 }
 
 const City = () => {
