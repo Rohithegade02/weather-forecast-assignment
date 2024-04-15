@@ -11,7 +11,7 @@ interface City {
   timezone: string;
 }
 
-const City = () => {
+const City = ({weatherdata}) => {
   const [cityData, setCityData] = useState<City[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [page, setPage] = useState<number>(1);
@@ -41,13 +41,13 @@ const City = () => {
     }
   };
 
+  //infinite scroll
   const handleScroll = () => {
     if (
-      window.innerHeight + document.documentElement.scrollTop ===
-      document.documentElement.offsetHeight
-    ) {
-      getCityData();
-      console.log('function()')
+      (window.innerHeight + Math.round(window.scrollY)) >= document.body.scrollHeight)
+     {
+     getCityData();
+      
     }
   };
 
@@ -58,6 +58,7 @@ const City = () => {
     };
   }, []);
 
+//sugesstion of city name
   const handleInput = (value: string) => {
     setSearch(value);
     if (value.length >= 2) {
@@ -67,8 +68,9 @@ const City = () => {
       setSuggest([]);
     }
   };
-
+//search by city name
   const handleSearch = (search: string) => {
+    console.log('search')
     if (search.trim() === '') {
       setFilteredData(cityData);
     } else {
@@ -83,6 +85,7 @@ const City = () => {
     setSuggest([]);
   };
 
+  //sorting of each column
   const handleSort = (column: keyof City) => {
     if (sortColumn === column) {
       setSortOrder(sortOrder === "asc" ? "desc" : "asc");
@@ -103,42 +106,50 @@ const City = () => {
     return 0;
   });
 
-  return (
-    <MainLayout >
-      <div className="bg-gradient-to-r from-slate-50 via-[#FCE7D6] to-[#EFEEF3] flex flex-col items-center mt-5 gap-10">
-        <div>
-          <input
-            type="search"
-            value={search}
-            className="p-2.5 rounded mx-5"
-            placeholder="Search.."
-            onChange={(e) => handleInput(e.target.value)}
-          />
-          <button
+  return loading ?
+  <Shimmer/>:  (
+    <>
+      <div className="bg-gradient-to-r  from-slate-50 via-[#FCE7D6] to-[#EFEEF3] flex flex-col items-center mt-5 gap-10">
+        <div className="flex flex-col items-center lg:items-start lg:flex-row">
+            <div>
+              <div>
+              <input
+              type="search"
+              value={search}
+              className="p-1 lg:p-2.5 rounded lg:mx-5"
+              placeholder="Search.."
+              onChange={(e) => handleInput(e.target.value)}
+                />
+                <div>
+                {suggest.length > 0 && (
+              <ul className=" w-[40vw] lg:w-[17vw] cursor-pointer">
+                {suggest.map((suggestion, index) => (
+                  <li
+                    key={index}
+                    className="mt-0.5 p-1 ml-5 bg-slate-100 border-b-black"
+                    onClick={() => handleSuggestionClick(suggestion)}
+                  >
+                    {suggestion.name}
+                  </li>
+                ))}
+              </ul>
+            )}
+              </div>
+          </div>
+           </div>
+            <div>
+            <button
             onClick={() => handleSearch(search)}
-            className="bg-indigo-500 hover:bg-indigo-600 text-slate-50 py-2 px-5 rounded"
+            className="bg-indigo-500 mt-2 lg:mt-0 px-3 hover:bg-indigo-600 text-slate-50 lg:py-2 lg:px-5 rounded"
           >
             Search
           </button>
-          {suggest.length > 0 && (
-            <ul className="w-[17vw] cursor-pointer">
-              {suggest.map((suggestion, index) => (
-                <li
-                  key={index}
-                  className="mt-0.5 p-1 ml-5 bg-slate-100 border-b-black"
-                  onClick={() => handleSuggestionClick(suggestion)}
-                >
-                  {suggestion.name}
-                </li>
-              ))}
-            </ul>
-          )}
+          </div>
+          
         </div>
 
-        <div className="flex mx-2 lg:justify-center">
-          {loading ? (
-            <Shimmer />
-          ) : (
+        <div className="flex max-w-[90vw] lg:mx-2 lg:justify-center">
+          
             <table className="bg-slate-50 w-[50%] lg:w-[100%] rounded-md">
               <thead className="rounded-md">
                 <tr  className="bg-[#6366F1] lg:px-[50px]">
@@ -175,10 +186,10 @@ const City = () => {
                 ))}
               </tbody>
             </table>
-          )}
+          
         </div>
       </div>
-    </MainLayout>
+    </>
   );
 };
 

@@ -1,10 +1,9 @@
 'use client'
 import React, { useEffect, useState } from 'react';
 import { observer } from 'mobx-react-lite';
-
-import RootLayout from '../layout';
 import store from '../store';
 import MainLayout from '../MainLayout';
+import Shimmer from '../components/Shimmer';
 
 
 interface WeatherData {
@@ -38,21 +37,22 @@ const UserLocation = observer(() => {
   const [weatherdata, setWeatherData] = useState<WeatherData | null>(null);
   
   useEffect(() => {
-    const promise = store.cityData.getUserLocation();
-    console.log('Unresolved promise:', promise);
-  
-    promise.then((res) => {
-      console.log('User location data:', res);
-setWeatherData(res)
+    setIsLoading(true)
+ store.cityData.getUserLocation()
+.then((res) => {
+      
+  setWeatherData(res)
+  setIsLoading(false)
     }).catch((error) => {
-      console.error('Error fetching user location:', error);
-    });
+      console.error(error);
+      setIsLoading(false)
+    }); 
   }, []);
   const temperatureToCelsius = (temp: number) => Math.round(temp - 273.15);
-  return (
+  return isLoading  ?<Shimmer/>: (
     
 
-    <RootLayout weatherdata={weatherdata}>
+    <MainLayout weatherdata={weatherdata}>
       <div style={{
        background: weatherdata?.weather && weatherdata.weather.length > 0 && weatherdata.weather[0].main.toLowerCase() === 'clouds'
           ? 'linear-gradient(to right, #817C78, #4D4E4F, #454749)'
@@ -61,7 +61,7 @@ setWeatherData(res)
             : weatherdata?.weather && weatherdata.weather.length > 0 && weatherdata.weather[0].main.toLowerCase() === 'clear' 
             ? 'linear-gradient(to right, #8AB1E2, #3F75B1, #3970AB)'
             : 'linear-gradient(to right, #8AB1E2, #3F75B1, #3970AB)',
-    height:'100vh'
+    minHeight:'100vh'
         
       }}>
       {
@@ -98,7 +98,7 @@ setWeatherData(res)
           </div>
         }
         </div>
-    </RootLayout>
+    </MainLayout>
   );
 });
 

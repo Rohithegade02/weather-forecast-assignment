@@ -1,15 +1,16 @@
 'use client'
 
+import MainLayout from "./MainLayout";
 import City from "./components/City";
 
 
-export default function Home() {
+export default function Home({weatherdata}) {
 
   return (
     
-      <div>
+      <MainLayout weatherdata={weatherdata}>
       <City/>
-      </div>
+      </MainLayout>
 
   );
 }
