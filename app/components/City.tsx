@@ -102,7 +102,6 @@ const City = () => {
   const sortedData = [...filteredData].sort((a, b) => {
     if (sortColumn) {
       if (sortColumn === 'population') {
-        // Ensure both a[sortColumn] and b[sortColumn] are treated as strings
         return sortOrder === "asc" ? parseInt(a[sortColumn].toString()) - parseInt(b[sortColumn].toString()) : parseInt(b[sortColumn].toString()) - parseInt(a[sortColumn].toString());
       } else {
         return sortOrder === "asc" ? (a[sortColumn] as string).localeCompare(b[sortColumn] as string) : (b[sortColumn] as string).localeCompare(a[sortColumn] as string);
