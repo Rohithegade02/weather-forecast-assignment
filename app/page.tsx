@@ -1,3 +1,4 @@
+'use client'
 import React from 'react';
 import MainLayout from "./MainLayout";
 import City from "./components/City";
