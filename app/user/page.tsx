@@ -1,4 +1,4 @@
-// 'use client'
+'use client'
 // import React, { useEffect, useState } from 'react';
 // import { observer } from 'mobx-react-lite';
 // import store from '../store';
@@ -46,7 +46,7 @@
 // //     }).catch((error) => {
 // //       console.error(error);
 // //       setIsLoading(false)
-// //     }); 
+// //     });
 //   }, []);
 //   const temperatureToCelsius = (temp: number) => Math.round(temp - 273.15);
 //   return isLoading  ?<Shimmer/>: (
@@ -58,7 +58,7 @@
 //           ? 'linear-gradient(to right, #817C78, #4D4E4F, #454749)'
 //           : weatherdata?.weather && weatherdata.weather.length > 0 && weatherdata.weather[0].main.toLowerCase() === 'rain'
 //             ? 'linear-gradient(to right, #8AB1E2, #3F75B1, #3970AB)'
-//             : weatherdata?.weather && weatherdata.weather.length > 0 && weatherdata.weather[0].main.toLowerCase() === 'clear' 
+//             : weatherdata?.weather && weatherdata.weather.length > 0 && weatherdata.weather[0].main.toLowerCase() === 'clear'
 //             ? 'linear-gradient(to right, #8AB1E2, #3F75B1, #3970AB)'
 //             : 'linear-gradient(to right, #8AB1E2, #3F75B1, #3970AB)',
 //     minHeight:'100vh'
@@ -103,3 +103,9 @@
 // });
 
 // export default UserLocation;
+
+const UserLocation = () => {
+  return <h1>Yet To Build this User Location functionality</h1>
+}
+
+export default UserLocation;
