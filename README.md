@@ -11,7 +11,7 @@ Weather-Forecast-Application
 -Dyanmically changes background color based on weather conditions.
 -Store.tsx is states management of fetching api,storing favourite cities and history information(MST)
 -Shimmer.js is used added where as loading component.
--Responsive desiagn for mobile screen is also done.
+-Responsive design for mobile screen is also done.
 
 Tech used-Nextjs,Typescript
 State Management - MST
