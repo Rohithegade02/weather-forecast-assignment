@@ -11,7 +11,7 @@ interface RootLayoutProps {
   weatherdata: any;
 }
 
-const RootLayout = ({ children, weatherdata }: RootLayoutProps) => {
+const RootLayout = ({ children }: RootLayoutProps) => {
   return (
     <html lang="en">
       <body className={inter.className}>
