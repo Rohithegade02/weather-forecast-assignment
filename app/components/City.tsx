@@ -19,7 +19,7 @@ const City = () => {
   const [search, setSearch] = useState<string>('');
   const [filteredData, setFilteredData] = useState<City[]>([]);
   const [suggest, setSuggest] = useState<City[]>([]);
-  const [sortColumn, setSortColumn] = useState<string | null>(null);
+  const [sortColumn, setSortColumn] = useState<string >('');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
 
   useEffect(() => {
@@ -88,10 +88,11 @@ const City = () => {
 
   //sorting of each column
   const handleSort = (column: keyof City) => {
-    if (sortColumn === column) {
+    const columnString=column as string;
+    if (sortColumn === columnString) {
       setSortOrder(sortOrder === "asc" ? "desc" : "asc");
     } else {
-      setSortColumn(column);
+      setSortColumn(columnString);
       setSortOrder("asc");
     }
   };
@@ -99,9 +100,10 @@ const City = () => {
   const sortedData = [...filteredData].sort((a, b) => {
     if (sortColumn) {
       if (sortColumn === 'population') {
-        return sortOrder === "asc" ? a[sortColumn] - b[sortColumn] : b[sortColumn] - a[sortColumn];
+        // Ensure both a[sortColumn] and b[sortColumn] are treated as strings
+        return sortOrder === "asc" ? parseInt(a[sortColumn].toString()) - parseInt(b[sortColumn].toString()) : parseInt(b[sortColumn].toString()) - parseInt(a[sortColumn].toString());
       } else {
-        return sortOrder === "asc" ? a[sortColumn].localeCompare(b[sortColumn]) : b[sortColumn].localeCompare(a[sortColumn]);
+        return sortOrder === "asc" ? (a[sortColumn] as string).localeCompare(b[sortColumn] as string) : (b[sortColumn] as string).localeCompare(a[sortColumn] as string);
       }
     }
     return 0;
