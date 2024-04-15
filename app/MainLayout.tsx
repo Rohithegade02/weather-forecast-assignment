@@ -1,6 +1,4 @@
 'use client';
-
-import { useEffect, useState } from 'react';
 import { Header } from './Header';
 import './globals.css';
 
@@ -9,7 +7,7 @@ interface MainLayoutProps {
   weatherdata: any;
 }
 
-const MainLayout = ({ children, weatherdata }: MainLayoutProps) => {
+const MainLayout = ({ children, weatherdata } :MainLayoutProps) => {
  
   return (
       <div  style={{

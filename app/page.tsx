@@ -1,19 +1,18 @@
-'use client'
-
+import React from 'react';
 import MainLayout from "./MainLayout";
 import City from "./components/City";
+
 interface MainLayoutProps {
   weatherdata: any;
 }
 
-export default function Home({ weatherdata }:MainLayoutProps) {
-
+const Home: React.FC<MainLayoutProps> = ({ weatherdata }) => {
   return (
-    
-      <MainLayout weatherdata={weatherdata}>
+    <MainLayout weatherdata={weatherdata}>
       <City/>
-      </MainLayout>
-
+    </MainLayout>
   );
 }
+
+export default Home;
 
