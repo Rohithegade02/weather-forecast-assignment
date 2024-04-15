@@ -1,7 +1,6 @@
 'use client'
 import React from 'react';
 import { observer } from 'mobx-react-lite';
-import RootLayout from '../layout';
 import store from '../store';
 import MainLayout from '../MainLayout';
 

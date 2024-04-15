@@ -11,7 +11,7 @@ interface City {
   timezone: string;
 }
 
-const City = ({weatherdata}) => {
+const City = () => {
   const [cityData, setCityData] = useState<City[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [page, setPage] = useState<number>(1);
@@ -108,7 +108,7 @@ const City = ({weatherdata}) => {
 
   return loading ?
   <Shimmer/>:  (
-    <>
+    
       <div className="bg-gradient-to-r  from-slate-50 via-[#FCE7D6] to-[#EFEEF3] flex flex-col items-center mt-5 gap-10">
         <div className="flex flex-col items-center lg:items-start lg:flex-row">
             <div>
@@ -189,7 +189,7 @@ const City = ({weatherdata}) => {
           
         </div>
       </div>
-    </>
+    
   );
 };
 

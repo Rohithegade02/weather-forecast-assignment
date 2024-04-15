@@ -2,11 +2,10 @@
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
-import RootLayout from "../layout";
 import Shimmer from "../components/Shimmer";
 import store from "../store";
 import MainLayout from "../MainLayout";
-import { ArrowBigDown, ArrowBigUp, ArrowDown, ArrowUp } from "lucide-react";
+import {  ArrowDown, ArrowUp } from "lucide-react";
 
 interface WeatherData {
   weather: {
@@ -64,8 +63,9 @@ const CityPage: React.FC = observer(() => {
       setIsLoading(false);
     }
   }
-  //
+  //kelvin to celsius
   const temperatureToCelsius = (temp: number) => Math.round(temp - 273.15);
+  //kelvin to fahrenheit
   const temperatureToFahrenheit = (temp: number) => Math.round((temp - 273.15) * 1.8)+32;
 
   return isLoading ? <Shimmer/>:(

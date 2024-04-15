@@ -54,13 +54,12 @@ const CityTableView: React.FC<CityTableViewProps> = ({
   };
 
   const timezoneString = (str: string) => { return str.slice(0, str.indexOf('/')) }
+ 
   useEffect(() => {
     function handleResize() {
       setIsMobile(window.innerWidth <= 768);
     }
-  
     window.addEventListener('resize', handleResize);
-  
     return () => {
       window.removeEventListener('resize', handleResize);
     };

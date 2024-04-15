@@ -1,4 +1,4 @@
-import { types, flow, getRoot } from "mobx-state-tree";
+import { types, flow } from "mobx-state-tree";
 
 const CityData = types
   .model({
